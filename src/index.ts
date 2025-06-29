@@ -1,7 +1,9 @@
+import * as Domain from "./domain";
 import "./index.css";
 
 import { drawTable } from "./table";
 
 window.addEventListener("load", () => {
-  drawTable(10, 10);
+  const domain = Domain.init();
+  drawTable(domain);
 });
