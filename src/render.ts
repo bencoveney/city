@@ -9,6 +9,7 @@ namespace Render {
   export type RenderCell = {
     className: string;
     content: string;
+    metadata: string;
   };
 
   export function render(domain: Domain): Render {
@@ -21,7 +22,11 @@ namespace Render {
       for (let y = 0; y < domain.bounds.height; y++) {
         const index = Array2d.getIndex(render, x, y);
         const terrain = Array2d.atIndex(domain.terrain, index);
-        const cell: RenderCell = { className: "", content: `(${x},${y})` };
+        const cell: RenderCell = {
+          className: "",
+          content: `${x},${y}`,
+          metadata: "",
+        };
         switch (terrain) {
           case Domain.Terrain.Grass:
             cell.className = classes.grass;
@@ -43,7 +48,7 @@ namespace Render {
           cell.className = Rect.isOnBoundary(building, x, y)
             ? classes.wall
             : classes.floor;
-          cell.content += `\n${buildingIndex} ${building.width}X${building.height}`;
+          cell.metadata += `${buildingIndex} ${building.width}X${building.height}`;
         }
       }
     }

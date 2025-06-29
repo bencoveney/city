@@ -14,6 +14,7 @@ namespace Table {
         const cellContent = Array2d.atXY(render, colIndex, rowIndex);
         cell.classList.add(cellContent.className);
         cell.innerHTML = cellContent.content.replaceAll("\n", "<br />");
+        cell.title = cellContent.metadata;
         row.appendChild(cell);
       }
       table.appendChild(row);

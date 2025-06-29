@@ -9,6 +9,17 @@ body {
   height: 100%;
 }
 
+/* src/render.module.css */
+.render_grass {
+  background-color: #009900;
+}
+.render_wall {
+  background-color: #999999;
+}
+.render_floor {
+  background-color: #999900;
+}
+
 /* src/table.module.css */
 .table_table {
   width: 100%;
@@ -16,6 +27,9 @@ body {
   border: none;
   border-spacing: 0;
   border-collapse: collapse;
+  font-size: 10px;
+  font-family: sans-serif;
 }
 .table_cell {
+  text-align: center;
 }
