@@ -1,8 +1,6 @@
-export type Array2d<T> = {
-  width: number;
-  height: number;
-  data: T[];
-};
+import { Dimensions } from "./dimensions";
+
+export type Array2d<T> = Dimensions & { data: T[] };
 
 /*
   [
