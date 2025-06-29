@@ -1,5 +1,6 @@
 import * as Array2d from "./array2d";
 import { Domain, Terrain } from "./domain";
+import { isOnBoundary } from "./rect";
 import classes from "./render.module.css";
 
 export type RenderCell = {
@@ -38,7 +39,9 @@ export function render(domain: Domain): Render {
       for (let y = building.y; y < building.y + building.height; y++) {
         const index = Array2d.getIndex(render, x, y);
         const cell = render.data[index];
-        cell.className = classes.building;
+        cell.className = isOnBoundary(building, x, y)
+          ? classes.wall
+          : classes.floor;
         cell.content += `\n${buildingIndex} ${building.width}X${building.height}`;
       }
     }

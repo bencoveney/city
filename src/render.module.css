@@ -2,6 +2,10 @@
   background-color: #009900;
 }
 
-.building {
+.wall {
   background-color: #999999;
+}
+
+.floor {
+  background-color: #999900;
 }

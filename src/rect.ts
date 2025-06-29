@@ -26,8 +26,6 @@ export function isOverlap(a: Rect, b: Rect): boolean {
   );
 }
 
-/*
-0123456789
-  |--| 2,4    a
-   |---| 3,5  b
-*/
+export function isOnBoundary(rect: Rect, x: number, y: number): boolean {
+  return x === rect.x || x === rightX(rect) || y === rect.y || y === topY(rect);
+}
