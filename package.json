@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "esbuild --bundle ./src/index.ts --outfile=./out/bundle.js",
+    "dev": "esbuild --bundle ./src/index.ts --outfile=./out/bundle.js --servedir=."
+  },
+  "dependencies": {
+    "esbuild": "^0.25.5"
+  }
+}
