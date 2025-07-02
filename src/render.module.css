@@ -1,11 +1,15 @@
-.grass {
+.terrainGrass {
   background-color: #009900;
 }
 
-.wall {
+.zoneWall {
   background-color: #999999;
 }
 
-.floor {
+.zoneFloor {
   background-color: #999900;
+}
+
+.zoneSquare {
+  background-color: #990099;
 }

@@ -2,6 +2,7 @@ import Array2d from "./array2d";
 import Domain from "./domain";
 import Rect from "./rect";
 import classes from "./render.module.css";
+import Zone from "./zone";
 
 interface Render extends Array2d<Render.RenderCell> {}
 
@@ -35,7 +36,7 @@ namespace Render {
         };
         switch (terrain) {
           case Domain.Terrain.Grass:
-            cell.className = classes.grass;
+            cell.className = classes.terrainGrass;
             break;
         }
         render.data[index] = cell;
@@ -50,12 +51,23 @@ namespace Render {
         for (let y = zone.y; y < zone.y + zone.height; y++) {
           const index = Array2d.getIndex(render, x, y);
           const cell = render.data[index];
-          cell.className = Rect.isOnBoundary(zone, x, y)
-            ? classes.wall
-            : classes.floor;
+          cell.className = zoneClass(zone, x, y);
           cell.metadata += `${zoneIndex} ${zone.width}X${zone.height}`;
         }
       }
+    }
+  }
+
+  function zoneClass(zone: Zone, x: number, y: number): string {
+    switch (zone.type) {
+      case Zone.Type.Building:
+        return Rect.isOnBoundary(zone, x, y)
+          ? classes.zoneWall
+          : classes.zoneFloor;
+      case Zone.Type.Square:
+        return classes.zoneSquare;
+      default:
+        throw new Error("Unknown zone");
     }
   }
 }
