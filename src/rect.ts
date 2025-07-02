@@ -20,6 +20,24 @@ namespace Rect {
     return rect.y;
   }
 
+  export function spanning(
+    fromX: number,
+    fromY: number,
+    toX: number,
+    toY: number
+  ): Rect {
+    const minX = Math.min(fromX, toX);
+    const minY = Math.min(fromY, toY);
+    const maxX = Math.min(fromX, toX);
+    const maxY = Math.min(fromY, toY);
+    return {
+      x: minX,
+      y: minY,
+      width: maxX - minX + 1,
+      height: maxY - minY + 1,
+    };
+  }
+
   export function isWithinBounds(outer: Rect, inner: Rect): boolean {
     return (
       leftX(inner) >= leftX(outer) &&

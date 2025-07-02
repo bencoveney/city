@@ -18,6 +18,12 @@ namespace Render {
       domain.bounds.height,
       null
     );
+    renderTerrain(domain, render);
+    renderZones(domain, render);
+    return render;
+  }
+
+  function renderTerrain(domain: Domain, render: Render) {
     for (let x = 0; x < domain.bounds.width; x++) {
       for (let y = 0; y < domain.bounds.height; y++) {
         const index = Array2d.getIndex(render, x, y);
@@ -35,24 +41,22 @@ namespace Render {
         render.data[index] = cell;
       }
     }
-    for (
-      let buildingIndex = 0;
-      buildingIndex < domain.buildings.length;
-      buildingIndex++
-    ) {
-      const building = domain.buildings[buildingIndex];
-      for (let x = building.x; x < building.x + building.width; x++) {
-        for (let y = building.y; y < building.y + building.height; y++) {
+  }
+
+  function renderZones(domain: Domain, render: Render) {
+    for (let zoneIndex = 0; zoneIndex < domain.zones.length; zoneIndex++) {
+      const zone = domain.zones[zoneIndex];
+      for (let x = zone.x; x < zone.x + zone.width; x++) {
+        for (let y = zone.y; y < zone.y + zone.height; y++) {
           const index = Array2d.getIndex(render, x, y);
           const cell = render.data[index];
-          cell.className = Rect.isOnBoundary(building, x, y)
+          cell.className = Rect.isOnBoundary(zone, x, y)
             ? classes.wall
             : classes.floor;
-          cell.metadata += `${buildingIndex} ${building.width}X${building.height}`;
+          cell.metadata += `${zoneIndex} ${zone.width}X${zone.height}`;
         }
       }
     }
-    return render;
   }
 }
 
