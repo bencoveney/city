@@ -33,7 +33,7 @@ namespace Domain {
       type: Zone.Type.Square,
     });
     for (let i = 0; i < numBuildings; i++) {
-      Zone.createRandomZone(domain, 3, 3, Zone.Type.Building);
+      Zone.createRandomZone(domain, 3, 6, Zone.Type.Building);
     }
     console.log(domain);
     return domain;

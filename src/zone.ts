@@ -1,4 +1,5 @@
 import Domain from "./domain";
+import Random from "./random";
 import Rect from "./rect";
 
 interface Zone extends Rect {
@@ -14,17 +15,17 @@ namespace Zone {
   const maxAttempts = 25;
   export function createRandomZone(
     domain: Domain,
-    size: number,
-    variance: number,
+    sizeFrom: number,
+    sizeTo: number,
     type: Zone.Type
   ) {
     for (let i = 0; i < maxAttempts; i++) {
-      const width = Math.floor(Math.random() * variance + size);
-      const height = Math.floor(Math.random() * variance + size);
+      const width = Random.intBetween(sizeFrom, sizeTo);
+      const height = Random.intBetween(sizeFrom, sizeTo);
       const possibleX = domain.bounds.width - width + 1;
       const possibleY = domain.bounds.height - height + 1;
-      const x = Math.floor(Math.random() * possibleX);
-      const y = Math.floor(Math.random() * possibleY);
+      const x = Random.intBetween(0, possibleX);
+      const y = Random.intBetween(0, possibleY);
       const zone: Zone = { x, y, width, height, type };
       const canPlace = domain.zones.every(
         (other) => !Rect.isOverlap(other, zone)
